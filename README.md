@@ -19,11 +19,11 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
 
 
 ## What is this repository for?
-Brain tumour segmentation is **difficult in real-world practice**. Clinical imaging is very **heterogenous**.
+Brain tumour segmentation is **difficult in real-world clinical practice**. Clinical imaging is very **heterogenous**.
 
 Most brain tumour segmentation models available require multimodal MRI with four structural sequences: FLAIR, T1-weighted, T2-weighted, and contrast-enhanced T1-weighted sequences (T1CE)
 
-But this ‘perfect’ and complete data is **often rare in clinical practice**.
+But this ‘perfect’ and complete imaging data is **rare in clinical practice**.
 
 We provide a solution to this problem with a modelling framework able to utilise any possible combination of these four MRI sequences, for both brain tumour lesion tissue class segmentation (enhancing tumour, non-enhancing tumour, and perilesional oedema), and general abnormality detection.
 
@@ -34,7 +34,7 @@ This work substantially extends the translational opportunity for quantitative a
 Models trained on incomplete data can segment lesions very well, often equivalently to those trained on the full completement of images, exhibiting Dice coefficients of 0.907 (single sequence) to 0.945 (complete set) for whole tumours, and 0.701 (single sequence) to 0.891 (complete set) for component tissue types. This opens the door both to the application of segmentation models to large-scale historical data, for the purpose of building treatment and outcome predictive models, and their application to real-world clinical care. A heatmap of model performances across all sequence combinations and tissue classes is shown below.
 
 ![Overview](assets/figure1.jpg)
-**Performance of all model combinations.** A) Heatmap illustrates the validation Dice coefficient across all models, for both whole tumour and the individual components. Models are partitioned into those which utilized just one sequence, two, three and finally the complete four- sequence model. A brighter orange/white box depicts a better performing model as per the Dice coefficient. B) Second heatmap depicts the relative acquisition time (TA) (in minutes) for the sequences used for a given model, with a more green/yellow box illustrating a longer acquisition time. C) Third heatmap illustrates the performance gain in Dice coefficient per minute of acquisition time. Colour keys are given at the right of the plot.
+**Performance of all model combinations.** A) Heatmap illustrates the validation Dice coefficient across all models, for both whole tumour and the individual components. Models are partitioned into those which utilized just one sequence, two, three and finally the complete four- sequence model. A brighter orange/white box depicts a better performing model as per the Dice coefficient. B) Second heatmap depicts the relative acquisition time (TA) in minutes for the sequences used for a given model, with a more green/yellow box illustrating a longer acquisition time. C) Third heatmap illustrates the performance gain in Dice coefficient per minute of acquisition time. Colour keys are given at the right of the plot.
 
 
 ## Detecting enhancing tumour without contrast-enhanced imaging
@@ -44,11 +44,11 @@ For example, patients allergic to contrast, those in renal failure who cannot re
 We show that segmentation models can detect enhancing tumour in the absence of contrast-enhancing imaging, quantifying the burden of enhancing tumour with an R2 > 0.97, varying negligibly with lesion morphology.
 
 ![Overview](assets/figure2.jpg)
-**Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the model prediction where contrast imaging was not provided. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is highly significantly correlated to that of all model predictions, even when contrast-enhanced imaging is not provided.
+**Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the model prediction where contrast imaging was not provided. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is significantly correlated across all model predictions, even when contrast-enhanced imaging is not provided.
 
 
 ## Usage instructions
-1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) *- .n.b use of a CUDA-supported GPU is strongly recommended.*
+1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) *- .N.b use of a CUDA-supported GPU is strongly recommended.*
 2. Download our model weights [here](https://doi.org/10.5281/zenodo.6782948).
 3. Skull-strip your data (if not already done): All models **must** be used with skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
 4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).
@@ -59,13 +59,14 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
-[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` exxpects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```). Not following this numbering system, or labelling sequences out of order to the model name will cause problems.
+[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` exxpects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```). Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
+The basic syntax is as follows:
 ```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 ```
 where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
-n.b. ```-f``` should always be kept as ```all```
+N.b. ```-f``` should always be kept as ```all```
 
 #### Example use case
 If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
@@ -88,13 +89,13 @@ Often not all MRI sequences are available for all patients. Rather than discount
 6. [argparse](https://pypi.org/project/argparse/)
 
 #### Example use case
-We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a ```.txt``` file of the participants to be worked on, in this example ```subs.txt ```, which contains patinet IDs on newlines, as follows:
+We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a ```.txt``` file of the participants to be worked on, in this example ```subs.txt ```, which contains patient IDs on newlines, as follows:
 ```
 patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some only 1, and some any combination. Those with no applicable imaging are ignored by the pipeline.
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline.
 
 We then use the python script ```detect_and_segment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
 ```
