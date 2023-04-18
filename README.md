@@ -9,7 +9,7 @@ The accompanying model weights for this repository can be downloaded here at:  [
 
 ## Table of Contents
 - [What is this repository for?](#what-is-this-repository-for)
-  - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
+  - [Typical performances for specific sequence combinations](#typical-performances-for-specific-sequence-combinations)
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
   -  [Using a specific model / sequence combination](#using-a-specific-model--sequence-combination)
@@ -32,7 +32,7 @@ We provide a solution to this problem with a modelling framework able to utilise
 This work substantially extends the translational opportunity for quantitative analysis to clinical situations where the full complement of sequences is not available, and potentially enables the characterisation of contrast-enhanced regions where contrast administration is infeasible or undesirable.
 
 
-## Anticipated performances for specific sequence combinations
+## Typical performances for specific sequence combinations
 Models trained on incomplete data can segment lesions very well, often equivalently to those trained on the full completement of images, exhibiting Dice coefficients of 0.907 (single sequence) to 0.945 (complete set) for whole tumours, and 0.701 (single sequence) to 0.891 (complete set) for component tissue types. This opens the door both to the application of segmentation models to large-scale historical data, for the purpose of building treatment and outcome predictive models, and their application to real-world clinical care. A heatmap of model performances across all sequence combinations and tissue classes is shown below.
 
 ![Overview](assets/figure1.jpg)
