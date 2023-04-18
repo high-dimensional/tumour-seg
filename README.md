@@ -11,8 +11,8 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
   - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
-  -  [Using a specific model / sequence combination](#Using-a-specific-model--sequence-combination)
-  -  [With variable sequence availability for across your cohort](#With-variable-sequence-availability-across-your-cohort)
+  -  [Using a specific model / sequence combination](#using-a-specific-model--sequence-combination)
+  -  [With variable sequence availability for across your cohort](#with-variable-sequence-availability-across-your-cohort)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
 - [Funding](#funding)
@@ -49,17 +49,17 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 
 ## Usage instructions
 **1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1)** *Use of a CUDA-enabled GPU is strongly recommended.*
-**2. Download our model weights here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948)
+**2. Download our model weights here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948).**
 **3. Skull-strip your data (if not already done): All models must be used with skull-stripped images.** If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
-**4. For using a specific model / sequence combinbation, see section **
-**5. Where MRI sequence availabilty differs across the cohort, see section which incoporates our autosegmentation tool**
+**4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).**
+**5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort)**
 
   
 ## Using a specific model / sequence combination
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
-[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model **Task900_BrainTumour2021_FlairT1CE** expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```). Not following this numbering system, or labelling sequences out of order to the model name will cause problems.
+[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model **Task900_BrainTumour2021_FlairT1CE** exxpects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```). Not following this numbering system, or labelling sequences out of order to the model name will cause problems.
 
 ```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
@@ -68,7 +68,7 @@ where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
 n.b. ```-f``` should always be kept as ```all```
 
 ### Example use case
-If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model **Task904_BrainTumour2021_FlairT1T2**. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
+If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
 
 Having done this, you can simply pass:
 ```
