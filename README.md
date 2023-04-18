@@ -11,7 +11,7 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
   - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
-  -  [Using a specific model / sequence combination](#Using-a-specific-model-/-sequence-combination)
+  -  [Using a specific model / sequence combination](#Using-a-specific-model---sequence-combination)
   -  [With variable sequence availability for across your cohort](#With-variable-sequence-availability-across-your-cohort)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
@@ -80,7 +80,7 @@ nnUNet_predict -i /home/jruffle/example_patient/ -o /home/jruffle/example_patien
 Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's lesion with the appropriate model.**
 
 ### Requirements
-1. [Python](https://www.python.org/downloads/release/python-3106/) - developed with v. 3.10.6 though will likely with many historical verisons.
+1. [Python](https://www.python.org/downloads/release/python-3106/)
 2. [NumPy](https://pypi.org/project/numpy/)
 3. [Pandas](https://pypi.org/project/pandas/)
 4. [tqdm](https://pypi.org/project/tqdm/)
