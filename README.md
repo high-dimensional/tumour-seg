@@ -55,7 +55,7 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort).
 
   
-## Using a specific model / sequence combination
+### Using a specific model / sequence combination
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
@@ -67,7 +67,7 @@ nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
 n.b. ```-f``` should always be kept as ```all```
 
-### Example use case
+#### Example use case
 If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
 
 Having done this, you can simply pass:
@@ -76,10 +76,10 @@ nnUNet_predict -i /home/jruffle/example_patient/ -o /home/jruffle/example_patien
 ```
 
 
-## With variable sequence availability across your cohort
+### With variable sequence availability across your cohort
 Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's tumour calling upon the appropriate model.**
 
-### Requirements
+#### Requirements
 1. [Python](https://www.python.org/downloads/release/python-3106/)
 2. [NumPy](https://pypi.org/project/numpy/)
 3. [Pandas](https://pypi.org/project/pandas/)
@@ -87,7 +87,7 @@ Often not all MRI sequences are available for all patients. Rather than discount
 5. [DateTime](https://pypi.org/project/DateTime/)
 6. [argparse](https://pypi.org/project/argparse/)
 
-### Example use case
+#### Example use case
 We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a ```.txt``` file of the participants to be worked on, in this example ```subs.txt ```, which contains patinet IDs on newlines, as follows:
 ```
 patient_0
