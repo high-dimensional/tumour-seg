@@ -116,7 +116,7 @@ We then use the python script ```autosegment.py```, also specifying whether to u
 ```
 python autosegment.py --path /home/jruffle/patient_studies/ --subs subs.txt --mode tissue 
 ```
-which will iterate through the patients, determine the MRI sequences available, and call upon the appropriate lesion segmentation model for the sequences identified. 
+This will iterate through the patient list, determine the MRI sequences available for each patient, and call upon the appropriate lesion tissue segmentation model accordingly.
 
 Further description of the options with argparse can be shown with ```python autosegment.py -h```
 
