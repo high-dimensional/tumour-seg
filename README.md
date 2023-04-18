@@ -112,13 +112,13 @@ Inside each patient directory are any number of NIFTIs, but those expected by th
       ├──T1CE.nii.gz
 ```
 
-We then use the python script ```detect_and_segment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
+We then use the python script ```autosegment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
 ```
-python detect_and_segment.py --path /home/jruffle/patient_studies/ --subs subs.txt --mode tissue 
+python autosegment.py --path /home/jruffle/patient_studies/ --subs subs.txt --mode tissue 
 ```
 which will iterate through the patients, determine the MRI sequences available, and call upon the appropriate lesion segmentation model for the sequences identified. 
 
-Further description of the options with argparse can be shown with ```python detect_and_segment.py -h```
+Further description of the options with argparse can be shown with ```python autosegment.py -h```
 
 
 ## Efficiency
