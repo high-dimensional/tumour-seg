@@ -2,7 +2,7 @@
 
 This is a repository hosting **all models** detailed in the article [Brain tumour segmentation with incomplete imaging data](https://arxiv.org/abs/2206.06120).
 
-Accompanying model weights for this repository can be downloaded here at:  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948)
+The accompanying model weights for this repository can be downloaded here at:  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948)
 
 ![Overview](assets/graphical_abstract.jpg)
 
