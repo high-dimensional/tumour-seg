@@ -48,11 +48,11 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 
 
 ## Usage instructions
-**1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1)** *Use of a CUDA-enabled GPU is strongly recommended.*
+**1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1)**
 **2. Download our model weights here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948).**
 **3. Skull-strip your data (if not already done): All models must be used with skull-stripped images.** If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
 **4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).**
-**5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort)**
+**5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort).**
 
   
 ## Using a specific model / sequence combination
