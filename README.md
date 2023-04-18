@@ -95,7 +95,20 @@ patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline.
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. In our example case, the directories contain the following:
+```
+/home/jruffle/patient_studies/
+├──patient_0/
+      ├──FLAIR.nii.gz
+      ├──T1.nii.gz
+      ├──T2.nii.gz
+      ├──T1CE.nii.gz
+├──patient_1/
+      ├──FLAIR.nii.gz
+├──patient_2/
+      ├──T2.nii.gz
+      ├──T1CE.nii.gz
+```
 
 We then use the python script ```detect_and_segment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
 ```
