@@ -67,11 +67,11 @@ Often not all MRI sequences are available for all patients. Rather than discount
 
 ### Requirements
 1. [Python](https://www.python.org/downloads/release/python-3106/) - developed with v. 3.10.6 though will likely with many historical verisons.
-2. [NumPy] (https://pypi.org/project/numpy/)
-3. [Pandas] (https://pypi.org/project/pandas/)
-4. [tqdm] (https://pypi.org/project/tqdm/)
-5. [DateTime] (https://pypi.org/project/DateTime/)
-6. [argparse] (https://pypi.org/project/argparse/)
+2. [NumPy](https://pypi.org/project/numpy/)
+3. [Pandas](https://pypi.org/project/pandas/)
+4. [tqdm](https://pypi.org/project/tqdm/)
+5. [DateTime](https://pypi.org/project/DateTime/)
+6. [argparse](https://pypi.org/project/argparse/)
 
 ### Example use case
 We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a .txt file of the participants to be worked on, in this example ```subs.txt ```, which contains on newlines:
