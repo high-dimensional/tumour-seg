@@ -13,6 +13,7 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
 - [Usage instructions](#usage-instructions)
   -  [Using a specific model / sequence combination](#using-a-specific-model--sequence-combination)
   -  [With variable sequence availability for across your cohort](#with-variable-sequence-availability-across-your-cohort)
+- [Efficiency](#efficiency)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
 - [Funding](#funding)
@@ -117,6 +118,10 @@ python detect_and_segment.py --path /home/jruffle/patient_studies/ --subs subs.t
 which will iterate through the patients, determine the MRI sequences available, and call upon the appropriate lesion segmentation model for the sequences identified. 
 
 Further description of the options with argparse can be shown with ```python detect_and_segment.py -h```
+
+
+## Efficiency
+On GPU-accelerated hardware (prototyped with a RTX NVIDIA 3090Ti), time to segment per patient is approximately 10-15 seconds.
 
 
 ## Usage queries
