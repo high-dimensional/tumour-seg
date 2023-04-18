@@ -59,7 +59,7 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
-[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: patient_id_0000.nii.gz, patient_id_0001.nii.gz, patient_id_0002.nii.gz, patient_id_0003.nii.gz. Sequence data must be labelled as such in the order as depicted by the model name. For example, model **Task900_BrainTumour2021_FlairT1CE** expects two files only, a **FLAIR** image (patient_id_0000.nii.gz), and a **T1CE** image (patient_id_0001.nii.gz). Not following this numbering system, or labelling sequences out of order to the model name will cause problems.
+[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model **Task900_BrainTumour2021_FlairT1CE** expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```). Not following this numbering system, or labelling sequences out of order to the model name will cause problems.
 
 ```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
@@ -68,7 +68,7 @@ where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
 n.b. ```-f``` should always be kept as ```all```
 
 ### Example use case
-If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model **Task904_BrainTumour2021_FlairT1T2**. To do this, a folder containing sequences in the following order: **FLAIR** patient_id_0000.nii.gz, **T1** patient_id_0001.nii.gz, **T2** patient_id_0002.nii.gz. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
+If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model **Task904_BrainTumour2021_FlairT1T2**. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
 
 Having done this, you can simply pass:
 ```
@@ -77,7 +77,7 @@ nnUNet_predict -i /home/jruffle/example_patient/ -o /home/jruffle/example_patien
 
 
 ## With variable sequence availability across your cohort
-Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's lesion with the appropriate model.**
+Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's tumour calling upon the appropriate model.**
 
 ### Requirements
 1. [Python](https://www.python.org/downloads/release/python-3106/)
@@ -88,13 +88,13 @@ Often not all MRI sequences are available for all patients. Rather than discount
 6. [argparse](https://pypi.org/project/argparse/)
 
 ### Example use case
-We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a .txt file of the participants to be worked on, in this example ```subs.txt ```, which contains on newlines:
+We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a ```.txt``` file of the participants to be worked on, in this example ```subs.txt ```, which contains patinet IDs on newlines, as follows:
 ```
 patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTI images, titled as FLAIR.nii.gz, T1.nii.gz, T2.nii.gz, T1CE.nii.gz, as appropriate. Some patients may have all 4 sequences, some only 1, and some any combination. 
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some only 1, and some any combination. Those with no applicable imaging are ignored by the pipeline.
 
 We then use the python script ```detect_and_segment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
 ```
