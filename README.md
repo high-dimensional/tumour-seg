@@ -121,7 +121,7 @@ Further description of the options with argparse can be shown with ```python det
 
 
 ## Efficiency
-On GPU-accelerated hardware (prototyped with a RTX NVIDIA 3090Ti), time to segment per patient is approximately 10-15 seconds.
+On GPU-accelerated hardware (prototyped on a NVIDIA GeForce RTX 3090 Ti), time to segment per patient is approximately 10-15 seconds.
 
 
 ## Usage queries
