@@ -3,6 +3,7 @@
 This is a repository for all models detailed in the article [Brain tumour segmentation with incomplete imaging data](https://arxiv.org/abs/2206.06120).
 ![Overview](assets/graphical_abstract.jpg)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6782948.svg)](https://doi.org/10.5281/zenodo.6782948)
 
 ## What is this repository for?
 Brain tumour segmentation is **difficult in real-world practice**. Clinical imaging is very **heterogenous**.
