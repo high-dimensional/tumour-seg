@@ -11,7 +11,7 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
   - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
-  -  [Using a specific model / sequence combination](#Using-a-specific-model-sequence-combination)
+  -  [Using a specific model / sequence combination](#Using-a-specific-model--sequence-combination)
   -  [With variable sequence availability for across your cohort](#With-variable-sequence-availability-across-your-cohort)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
