@@ -5,14 +5,17 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
 
 ![Overview](assets/graphical_abstract.jpg)
 
-# Table of Contents
-- [What is this repository for?](## What is this repository for?)
-  - [Anticipated performances for specific sequence combinations](## Anticipated performances for specific sequence combinations)
-  - [## Detecting enhancing tumour without contrast-enhanced imaging](## Detecting enhancing tumour without contrast-enhanced imaging)
-- [How to run nnU-Net on a new dataset](#how-to-run-nnu-net-on-a-new-dataset)
-- [Common questions and issues](#common-questions-and-issues)
-- [Useful Resources](#useful-resources)
-- [Acknowledgements](#acknowledgements)
+
+## Table of Contents
+- [What is this repository for?](#what-is-this-repository-for?)
+  - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
+  - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
+- [Usage instructions](#usage-instructions)
+  -  [Usage for specific model / sequence combination](#usage-for-specific-model-/-sequence-combination)
+  -  [Usage with variable sequence availability for patients](#usage-with-variable-sequence-availability-for-patients)
+- [Usage queries](#usage-queries)
+- [Citation](#citation)
+- [Funding](#funding)
 
 
 ## What is this repository for?
@@ -33,6 +36,7 @@ Models trained on incomplete data can segment lesions very well, often equivalen
 ![Overview](assets/figure1.jpg)
 **Performance of all model combinations.** A) Heatmap illustrates the validation Dice coefficient across all models, for both whole tumour and the individual components. Models are partitioned into those which utilized just one sequence, two, three and finally the complete four- sequence model. A brighter orange/white box depicts a better performing model as per the Dice coefficient. B) Second heatmap depicts the relative acquisition time (TA) (in minutes) for the sequences used for a given model, with a more green/yellow box illustrating a longer acquisition time. C) Third heatmap illustrates the performance gain in Dice coefficient per minute of acquisition time. Colour keys are given at the right of the plot.
 
+
 ## Detecting enhancing tumour without contrast-enhanced imaging
 **Not all patients can receive intravenous contrast for post-contrast MRI sequence acquistion.**
 For example, patients allergic to contrast, those in renal failure who cannot receive it, or where contrast use should be minimised (such as with regular follow-up).
@@ -41,6 +45,7 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 
 ![Overview](assets/figure2.jpg)
 **Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the model prediction where contrast imaging was not provided. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is highly significantly correlated to that of all model predictions, even when contrast-enhanced imaging is not provided.
+
 
 ## Usage instructions
 **1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1)** *Use of a CUDA-enabled GPU is strongly recommended.*
@@ -100,17 +105,15 @@ which will iterate through the patients, determine the MRI sequences available, 
 Further description of the options with argparse can be shown with ```python detect_and_segment.py -h```
 
 
-
-## Citation
-If using these works, please cite the following [paper](https://arxiv.org/abs/2206.06120)
-
-James K Ruffle, Samia Mohinta, Robert Gray, Harpreet Hyare, Parashkev Nachev. Brain tumour segmentation with incomplete imaging data. Brain Communications. 2023. DOI 10.1093/braincomms/fcad118
-
-
 ## Usage queries
 Via github issue log or email to j.ruffle@ucl.ac.uk
 
 
+## Citation
+If using these works, please cite the following [paper](https://arxiv.org/abs/2206.06120):
 
-## Funders
+James K Ruffle, Samia Mohinta, Robert Gray, Harpreet Hyare, Parashkev Nachev. Brain tumour segmentation with incomplete imaging data. Brain Communications. 2023. DOI 10.1093/braincomms/fcad118
+
+
+## Funding
 The Wellcome Trust; UCLH NIHR Biomedical Research Centre; Medical Research Council; Guarantors of Brain; NHS Topol Digital Fellowship
