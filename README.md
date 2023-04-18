@@ -7,12 +7,12 @@ This is a repository hosting **all models** detailed in the article [Brain tumou
 
 
 ## Table of Contents
-- [What is this repository for?](#what-is-this-repository-for?)
+- [What is this repository for?](#what-is-this-repository-for)
   - [Anticipated performances for specific sequence combinations](#anticipated-performances-for-specific-sequence-combinations)
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
-  -  [Usage for specific model / sequence combination](#usage-for-specific-model-/-sequence-combination)
-  -  [Usage with variable sequence availability for patients](#usage-with-variable-sequence-availability-for-patients)
+  -  [Using a specific model / sequence combination](#Using-a-specific-model-/-sequence-combination)
+  -  [With variable sequence availability for across your cohort](#With-variable-sequence-availability-across-your-cohort)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
 - [Funding](#funding)
@@ -54,8 +54,8 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 **4. For using a specific model / sequence combinbation, see section **
 **5. Where MRI sequence availabilty differs across the cohort, see section which incoporates our autosegmentation tool**
 
-
-## Usage for specific model / sequence combination
+  
+## Using a specific model / sequence combination
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
@@ -76,7 +76,7 @@ nnUNet_predict -i /home/jruffle/example_patient/ -o /home/jruffle/example_patien
 ```
 
 
-## Usage with variable sequence availability for patients
+## With variable sequence availability across your cohort
 Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's lesion with the appropriate model.**
 
 ### Requirements
