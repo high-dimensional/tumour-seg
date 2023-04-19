@@ -63,13 +63,14 @@ Where a specific set of sequences are available, you can run segmentation with t
 
 [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
-If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order must follow that of current [BraTS](http://braintumorsegmentation.org) convention, as follows:
+If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order **must follow that of current [BraTS](http://braintumorsegmentation.org) convention**, as follows:
 
-```{'FLAIR.nii.gz':'image_0000.nii.gz',
+```
+{'FLAIR.nii.gz':'image_0000.nii.gz',
 'T1.nii.gz':'image_0001.nii.gz',
 'T1CE.nii.gz':'image_0002.nii.gz',
-'T2.nii.gz':'image_0003.nii.gz'}```
-
+'T2.nii.gz':'image_0003.nii.gz'}
+```
 
 The basic syntax is as follows:
 ```
