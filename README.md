@@ -50,7 +50,7 @@ For example, patients allergic to contrast, those in renal failure where it is c
 
 
 ## Usage instructions
-1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *NB use of a CUDA-supported GPU is strongly recommended.*
+1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *N.B. use of a CUDA-supported GPU is strongly recommended.*
 2. Download our model weights [here](https://doi.org/10.5281/zenodo.6782948).
 3. Skull-strip your data. *All models have been trained to expect skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).*
 4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).
@@ -65,7 +65,7 @@ Where a specific set of sequences are available, you can run segmentation with t
 
 For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
-NB If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` for multiclass lesion tissue segmentation, or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality``` for general abnormality detection], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
+N.B. If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` for multiclass lesion tissue segmentation, or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality``` for general abnormality detection], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
 
 ```
 {'FLAIR.nii.gz':'image_0000.nii.gz',
