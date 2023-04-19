@@ -82,7 +82,7 @@ where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
 ```-f``` should always be kept as ```all```.
 
 #### Example use case
-If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
+If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, **but lacks the post-contrast T1 (T1CE)**, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```, with a directory containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
 
 Having done this, you can simply pass:
 ```
@@ -108,7 +108,7 @@ patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTIs, but those expected by the models need to be named as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. In our example case, the directories contain the following:
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be named as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. **Our pipeline ```autosegment.py``` will recognise this data variability and select the most appropriate segmentation model for each individual patient.** In our example case, the directories contain the following:
 ```
 /home/jruffle/patient_studies/
 ├──patient_0/
