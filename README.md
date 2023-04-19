@@ -46,7 +46,7 @@ For example, patients allergic to contrast, those in renal failure where it is c
 **We show that segmentation models can detect enhancing tumour in the absence of contrast-enhancing imaging,** quantifying the burden of enhancing tumour with an R2 > 0.97, varying negligibly with lesion morphology.
 
 ![Overview](assets/figure2.jpg)
-**Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the model prediction where contrast imaging was not provided. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is significantly correlated across all model predictions, even when contrast-enhanced imaging is not provided.
+**Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the *model prediction where contrast imaging was not provided*. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is significantly correlated across all model predictions, even when contrast-enhanced imaging is not provided.
 
 
 ## Usage instructions
