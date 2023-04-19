@@ -1,9 +1,29 @@
-import glob; 
-import numpy as np; 
-import sys; 
-import os; 
-import pandas as pd; 
-import shutil; 
+#	autosegment.py | a pipeline for automated brain tumour segmentation using MRI with variable MRI sequence availability
+#
+#	Citation | James K Ruffle, Samia Mohinta, Robert Gray, Harpreet Hyare, Parashkev Nachev. Brain tumour segmentation with incomplete imaging data. Brain Communications. 2023. 
+#	DOI 10.1093/braincomms/fcad118
+#
+#	Copyright 2023 James Ruffle, High-Dimensional Neurology, UCL Queen Square Institute of Neurology.
+#
+#	This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+#	as published the Free Software Foundation, either version 3 of the License, or any later.
+#
+#	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#
+#	See the GNU General Public License for more details.
+#	You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+#	This code is part of the repository https://github.com/high-dimensional/tumour-seg
+#
+#	Correspondence to Dr James K Ruffle by email: j.ruffle@ucl.ac.uk
+
+import glob
+import numpy as np
+import sys
+import os 
+import pandas as pd
+import shutil
 import errno
 import subprocess
 from datetime import datetime
