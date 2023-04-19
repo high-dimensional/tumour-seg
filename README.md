@@ -52,7 +52,7 @@ For example, patients allergic to contrast, those in renal failure where it is c
 ## Usage instructions
 1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *NB use of a CUDA-supported GPU is strongly recommended.*
 2. Download our model weights [here](https://doi.org/10.5281/zenodo.6782948).
-3. Skull-strip your data. All models have been trained to expect skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
+3. Skull-strip your data. *All models have been trained to expect skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).*
 4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).
 5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort).
 
