@@ -50,7 +50,7 @@ For example, patients allergic to contrast, those in renal failure where it is c
 
 
 ## Usage instructions
-1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *.N.b use of a CUDA-supported GPU is strongly recommended.*
+1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *NB use of a CUDA-supported GPU is strongly recommended.*
 2. Download our model weights [here](https://doi.org/10.5281/zenodo.6782948).
 3. Skull-strip your data. All models have been trained to expect skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
 4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).
@@ -77,7 +77,7 @@ The basic syntax to call a segmentation model is as follows:
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 ```
 where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
-N.b. ```-f``` should always be kept as ```all```.
+NB ```-f``` should always be kept as ```all```.
 
 #### Example use case
 If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
