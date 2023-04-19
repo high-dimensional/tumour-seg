@@ -21,38 +21,38 @@ The accompanying model weights for this repository can be downloaded here at:  [
 
 
 ## What is this repository for?
-Brain tumour segmentation is **difficult in real-world clinical practice**. Clinical imaging is very **heterogenous**.
+Brain tumour segmentation is **difficult in real-world clinical practice**. Clinical imaging is often **heterogenous**.
 
-Most brain tumour segmentation models available require multimodal MRI with four structural sequences: FLAIR, T1-weighted, T2-weighted, and contrast-enhanced T1-weighted sequences (T1CE)
+Most brain tumour segmentation models available require multimodal MRI with four structural sequences: FLAIR, T1-weighted, T2-weighted, and contrast-enhanced T1-weighted sequences (T1CE).
 
-But this ‘perfect’ and complete imaging data is **rare in clinical practice**.
+But, this ‘perfect’ and complete imaging data is comparatively **rare in clinical practice**.
 
-We provide a solution to this problem with a modelling framework able to utilise any possible combination of these four MRI sequences, for both brain tumour lesion tissue class segmentation (enhancing tumour, non-enhancing tumour, and perilesional oedema), and general abnormality detection.
+**We provide a solution to this problem** with a modelling framework able to utilise *any possible combination of these four MRI sequences*, for both brain tumour lesion tissue class segmentation (enhancing tumour, non-enhancing tumour, and perilesional oedema), and general abnormality detection.
 
-This work substantially extends the translational opportunity for quantitative analysis to clinical situations where the full complement of sequences is not available, and potentially enables the characterisation of contrast-enhanced regions where contrast administration is infeasible or undesirable.
+This work substantially extends the **translational opportunity for quantitative imaging analysis to clinical situations where the full complement of sequences is not available, and potentially enables the characterisation of contrast-enhanced regions where contrast administration is infeasible or undesirable.**
 
 
 ## Typical performances for specific MRI sequence combinations
-Models trained on incomplete data can segment lesions very well, often equivalently to those trained on the full completement of images, exhibiting Dice coefficients of 0.907 (single sequence) to 0.945 (complete set) for whole tumours, and 0.701 (single sequence) to 0.891 (complete set) for component tissue types. This opens the door both to the application of segmentation models to large-scale historical data, for the purpose of building treatment and outcome predictive models, and their application to real-world clinical care. A heatmap of model performances across all sequence combinations and tissue classes is shown below.
+Models trained on incomplete data can segment lesions very well, **often equivalently to those trained on the full completement of images**, exhibiting Dice coefficients of 0.907 (single sequence) to 0.945 (complete set) for whole tumours, and 0.701 (single sequence) to 0.891 (complete set) for component tissue types. This **opens the door both to the application of segmentation models to large-scale historical data, for the purpose of building treatment and outcome predictive models, and their application to real-world clinical care.** A heatmap of model performances across all sequence combinations and tissue classes is shown below.
 
 ![Overview](assets/figure1.jpg)
-**Performance of all model combinations.** A) Heatmap illustrates the validation Dice coefficient across all models, for both whole tumour and the individual components. Models are partitioned into those which utilized just one sequence, two, three and finally the complete four- sequence model. A brighter orange/white box depicts a better performing model as per the Dice coefficient. B) Second heatmap depicts the relative acquisition time (TA) in minutes for the sequences used for a given model, with a more green/yellow box illustrating a longer acquisition time. C) Third heatmap illustrates the performance gain in Dice coefficient per minute of acquisition time. Colour keys are given at the right of the plot.
+**Performance of all model combinations.** A) Heatmap illustrates the validation Dice coefficient across all models, for both whole tumour and the individual tissue components. Models are partitioned into those which utilized just one sequence, two, three and finally the complete four- sequence model. A brighter orange/white box depicts a better performing model as per the Dice coefficient. B) Second heatmap depicts the relative acquisition time (TA) in minutes for the sequences used for a given model, with a more green/yellow box illustrating a longer acquisition time *(based on MRI sequence acquisition time at our centre as of April 2023)*. C) Third heatmap illustrates the performance gain in Dice coefficient per minute of acquisition time. Colour keys are given at the right of the plot.
 
 
 ## Detecting enhancing tumour without contrast-enhanced imaging
 **Not all patients can receive intravenous contrast for post-contrast MRI sequence acquistion.**
-For example, patients allergic to contrast, those in renal failure who cannot receive it, or where contrast use should be minimised (such as with regular follow-up).
+For example, patients allergic to contrast, those in renal failure where it is contraindicated. There are numerous further use cases where minimizing contrast use is desirable, such as with regular follow-up.
 
-We show that segmentation models can detect enhancing tumour in the absence of contrast-enhancing imaging, quantifying the burden of enhancing tumour with an R2 > 0.97, varying negligibly with lesion morphology.
+**We show that segmentation models can detect enhancing tumour in the absence of contrast-enhancing imaging,** quantifying the burden of enhancing tumour with an R2 > 0.97, varying negligibly with lesion morphology.
 
 ![Overview](assets/figure2.jpg)
 **Examples of segmenting enhancing tumour without contrast.** A-C) Left two columns and rows of each panel illustrate the anatomical imaging for three randomly selected cases, whilst the third column of each panel illustrates the hand-labelled ground truth shown with the overlayed T1CE image, and finally the model prediction where contrast imaging was not provided. Of note, the case in panel B comprised a tumour with only a 7mm diameter enhancing component. D) The volume of enhancing tumour is significantly correlated across all model predictions, even when contrast-enhanced imaging is not provided.
 
 
 ## Usage instructions
-1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) *- .N.b use of a CUDA-supported GPU is strongly recommended.*
+1. Install [nnU-Net v1](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) | *.N.b use of a CUDA-supported GPU is strongly recommended.*
 2. Download our model weights [here](https://doi.org/10.5281/zenodo.6782948).
-3. Skull-strip your data (if not already done): All models **must** be used with skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
+3. Skull-strip your data. All models have been trained to expect skull-stripped images. If not already done, there are many ways to do this, though we personally recommend [HD-BET](https://github.com/MIC-DKFZ/HD-BET).
 4. For using a specific model / sequence combinbation, see [here](#Using-a-specific-model--sequence-combination).
 5. Where MRI sequence availabilty differs across the cohort, see [here](#with-variable-sequence-availability-across-your-cohort).
 
@@ -61,14 +61,22 @@ We show that segmentation models can detect enhancing tumour in the absence of c
 This closely follows the [instructions for model inference with nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1#run-inference)
 Where a specific set of sequences are available, you can run segmentation with the following:
 
-[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` exxpects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
+[nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
+
+If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order must follow that of current [BraTS](http://braintumorsegmentation.org) convention, as follows:
+
+```{'FLAIR.nii.gz':'image_0000.nii.gz',
+'T1.nii.gz':'image_0001.nii.gz',
+'T1CE.nii.gz':'image_0002.nii.gz',
+'T2.nii.gz':'image_0003.nii.gz'}```
+
 
 The basic syntax is as follows:
 ```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 ```
 where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
-N.b. ```-f``` should always be kept as ```all```
+N.b. ```-f``` should always be kept as ```all```.
 
 #### Example use case
 If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
