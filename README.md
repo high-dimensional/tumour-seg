@@ -108,7 +108,9 @@ patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTIs, but those expected by the models need to be named as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. **Our pipeline ```autosegment.py``` will recognise this data variability and select the most appropriate segmentation model for each individual patient.** In our example case, the directories contain the following:
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be named as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. **Our pipeline ```autosegment.py``` will recognise this data variability and select the most appropriate segmentation model for each individual patient.** 
+
+In our example case, the directories contain the following:
 ```
 /home/jruffle/patient_studies/
 ├──patient_0/
