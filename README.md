@@ -125,11 +125,11 @@ In our example case, the directories contain the following:
       ├──T1CE.nii.gz
 ```
 
-We then use the python script ```autosegment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this example, we may call:
+We then use the python script ```autosegment.py```, also specifying whether to undertake *multiclass lesion tissue segmentation*, or *general abnormality detection*. In this example, we may call:
 ```
 python autosegment.py --path /home/jruffle/patient_studies/ --subs subs.txt --mode tissue 
 ```
-This will iterate through the patient list, determine the MRI sequences available for each patient, and call upon the appropriate lesion tissue segmentation model accordingly.
+This will iterate through the patient list, determine the MRI sequences available **for each individual patient, and call the appropriate segmentation model for each individual** to conduct multiclass lesion tissue segmentation.
 
 Further description of the options can be shown with ```python autosegment.py -h```
 
