@@ -65,7 +65,7 @@ Where a specific set of sequences are available, you can run segmentation with t
 
 For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
-If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
+If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` for multiclass lesion tissue segmentation, or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality``` for general abnormality detection], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
 
 ```
 {'FLAIR.nii.gz':'image_0000.nii.gz',
