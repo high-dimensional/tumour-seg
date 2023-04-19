@@ -13,7 +13,7 @@ The accompanying model weights for this repository can be downloaded here at:  [
   - [Detecting enhancing tumour without contrast-enhanced imaging](#detecting-enhancing-tumour-without-contrast-enhanced-imaging)
 - [Usage instructions](#usage-instructions)
   -  [Using a specific model / sequence combination](#using-a-specific-model--sequence-combination)
-  -  [With variable sequence availability for across your cohort](#with-variable-sequence-availability-across-your-cohort)
+  -  [With variable sequence availability across your cohort](#with-variable-sequence-availability-across-your-cohort)
 - [Efficiency](#efficiency)
 - [Usage queries](#usage-queries)
 - [Citation](#citation)
