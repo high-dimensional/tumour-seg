@@ -1,4 +1,4 @@
-#	autosegment.py | a pipeline for automated brain tumour segmentation using MRI with variable MRI sequence availability
+#	autosegment.py | a pipeline for automated brain tumour segmentation with variable MRI sequence availability
 #
 #	Citation | James K Ruffle, Samia Mohinta, Robert Gray, Harpreet Hyare, Parashkev Nachev. Brain tumour segmentation with incomplete imaging data. Brain Communications. 2023. 
 #	DOI 10.1093/braincomms/fcad118
