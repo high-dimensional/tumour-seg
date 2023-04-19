@@ -65,7 +65,7 @@ Where a specific set of sequences are available, you can run segmentation with t
 
 For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
-If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` for multiclass lesion tissue segmentation, or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality``` for general abnormality detection], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
+NB If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` for multiclass lesion tissue segmentation, or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality``` for general abnormality detection], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
 
 ```
 {'FLAIR.nii.gz':'image_0000.nii.gz',
@@ -79,7 +79,7 @@ The basic syntax to call a segmentation model is as follows:
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 ```
 where ```-t TASK_NAME_OR_ID``` denotes a specific model to be used.
-NB ```-f``` should always be kept as ```all```.
+```-f``` should always be kept as ```all```.
 
 #### Example use case
 If a patient has T1-weighted, T2-weighted, and FLAIR MRI sequences, *but lacks the post-contrast T1 (T1CE)*, and we wish to undertake *lesion tissue class segmentation*, we should use the model ```Task904_BrainTumour2021_FlairT1T2```. To do this, a folder containing sequences in the following order: **FLAIR** ```patient_id_0000.nii.gz```, **T1** ```patient_id_0001.nii.gz```, **T2** ```patient_id_0002.nii.gz```. For example purposes, we will consider the patient directory to be ```/home/jruffle/example_patient/```.
