@@ -63,7 +63,7 @@ Where a specific set of sequences are available, you can run segmentation with t
 
 [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) expects multimodal data to be suffixed numerically as follows: ```patient_id_0000.nii.gz```, ```patient_id_0001.nii.gz```, ```patient_id_0002.nii.gz```, ```patient_id_0003.nii.gz```. Sequence data must be labelled as such in the order as depicted by the model name. For example, model ```Task900_BrainTumour2021_FlairT1CE``` expects **two files only**, a **FLAIR** image (```patient_id_0000.nii.gz```), and a **T1CE** image (```patient_id_0001.nii.gz```), **in that order**. Not following this numbering system, or labelling sequences out of order to the model name will cause problems. 
 
-If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order **must follow that of current [BraTS](http://braintumorsegmentation.org) convention**, as follows:
+If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_BrainTumour2021_allseq_bratsonly``` or ```Task919_BrainTumour2021_allseq_bratsonly_abnormality```], then sequence labelling order **must follow the current [BraTS](http://braintumorsegmentation.org) convention**, which is as follows:
 
 ```
 {'FLAIR.nii.gz':'image_0000.nii.gz',
@@ -72,7 +72,7 @@ If using the fully multimodal (4 MRI sequence) model [i.e. either ```Task918_Bra
 'T2.nii.gz':'image_0003.nii.gz'}
 ```
 
-The basic syntax is as follows:
+The basic syntax to call a segmentation model is as follows:
 ```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -f all
 ```
@@ -89,7 +89,7 @@ nnUNet_predict -i /home/jruffle/example_patient/ -o /home/jruffle/example_patien
 
 
 ### With variable sequence availability across your cohort
-Often not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each given patient, then segment each patient's tumour calling upon the appropriate model.**
+Often, not all MRI sequences are available for all patients. Rather than discount either patients with incomplete data, or disregard sequences that aren't available for everyone, **we provide here a pipeline to automatically detect sequence availability for each patient, then segment each patient's tumour calling upon the appropriate model.**
 
 #### Requirements
 1. [Python](https://www.python.org/downloads/release/python-3106/)
@@ -100,13 +100,13 @@ Often not all MRI sequences are available for all patients. Rather than discount
 6. [argparse](https://pypi.org/project/argparse/)
 
 #### Example use case
-We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```, and so on. We also create a ```.txt``` file of the participants to be worked on, in this example ```subs.txt ```, which contains patient IDs on newlines, as follows:
+We have a directory of patient studies, for example in ```/home/jruffle/patient_studies/```. There are 3 patients, each with their own directory, ```patient_0```, ```patient_1```, ```patient_2```. We also create a ```.txt``` file of the participants to be worked on, in this example named ```subs.txt ```, which contains patient IDs on newlines, as follows:
 ```
 patient_0
 patient_1
 patient_2
 ```
-Inside each patient directory are any number of NIFTIs, but those expected by the models need to be titled as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```, as appropriate. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. In our example case, the directories contain the following:
+Inside each patient directory are any number of NIFTIs, but those expected by the models need to be named as any of ```FLAIR.nii.gz```, ```T1.nii.gz```, ```T2.nii.gz```, ```T1CE.nii.gz```. Some patients may have all 4 sequences, some might have only 1, and others any other combination of the possible four. Those with no applicable imaging are ignored by the pipeline. In our example case, the directories contain the following:
 ```
 /home/jruffle/patient_studies/
 ├──patient_0/
@@ -121,17 +121,17 @@ Inside each patient directory are any number of NIFTIs, but those expected by th
       ├──T1CE.nii.gz
 ```
 
-We then use the python script ```autosegment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this case, we may call:
+We then use the python script ```autosegment.py```, also specifying whether to undertake multiclass lesion tissue segmentation, or general abnormality detection. In this example, we may call:
 ```
 python autosegment.py --path /home/jruffle/patient_studies/ --subs subs.txt --mode tissue 
 ```
 This will iterate through the patient list, determine the MRI sequences available for each patient, and call upon the appropriate lesion tissue segmentation model accordingly.
 
-Further description of the options with argparse can be shown with ```python autosegment.py -h```
+Further description of the options can be shown with ```python autosegment.py -h```
 
 
 ## Efficiency
-On GPU-accelerated hardware (prototyped on a NVIDIA GeForce RTX 3090 Ti), time to segment per patient is approximately 10-15 seconds.
+On GPU-accelerated hardware (prototyped on a NVIDIA GeForce RTX 3090 Ti), time to segment per patient is approximately **10-15 seconds**.
 
 
 ## Usage queries
