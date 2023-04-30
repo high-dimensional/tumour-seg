@@ -1,6 +1,6 @@
 # Brain tumour segmentation with incomplete imaging data
 
-This is a repository hosting all models detailed in the article [Brain tumour segmentation with incomplete imaging data](https://academic.oup.com/braincomms/article/5/2/fcad118/7145873?searchresult=1).
+This is a repository hosting all models detailed in the article [Brain tumour segmentation with incomplete imaging data](https://doi.org/10.1093/braincomms/fcad118).
 
 
 The accompanying model weights for this repository can be downloaded here at:  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7840171.svg)](https://doi.org/10.5281/zenodo.7840171)
@@ -146,7 +146,7 @@ Via github issue log or email to j.ruffle@ucl.ac.uk
 
 
 ## Citation
-If using these works, please cite the following [paper](https://academic.oup.com/braincomms/article/5/2/fcad118/7145873?searchresult=1):
+If using these works, please cite the following [paper](https://doi.org/10.1093/braincomms/fcad118):
 
 James K Ruffle, Samia Mohinta, Robert Gray, Harpreet Hyare, Parashkev Nachev. Brain tumour segmentation with incomplete imaging data. Brain Communications. 2023, Volume 5, Issue 2. DOI 10.1093/braincomms/fcad118
 
